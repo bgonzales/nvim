@@ -2,6 +2,8 @@
 
 ## Requirements
 
+- brew install fzf
+
 In `~/.zshrc` file write a method so we can press Ctrl-n to open the config switcher and some alias pointing directly are created.
 
 ```
