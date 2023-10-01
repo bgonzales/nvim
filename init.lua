@@ -78,4 +78,5 @@ vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 
 -- Set local color scheme
-vim.cmd([[colorscheme xcodedarkhc]])
+-- vim.cmd([[colorscheme xcodedarkhc]])
+vim.cmd([[colorscheme xcodelighthc]])
