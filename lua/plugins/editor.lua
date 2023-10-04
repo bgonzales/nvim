@@ -10,6 +10,58 @@ return {
         },
     },
     {
+        "nvim-telescope/telescope.nvim",
+        lazy = false,
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
+                config = function()
+                    require("telescope").load_extension("fzf")
+                end
+            }, {
+                "nvim-telescope/telescope-file-browser.nvim",
+                config = function()
+                    require("telescope").load_extension("file_browser")
+                end
+            }
+        },
+        opts = {
+            defaults = {
+                sorting_strategy = "ascending",
+                layout_config = {
+                    prompt_position = "top",
+                    horizontal = {
+                        preview_width = 0.5,
+                    },
+                    vertical = {
+                        preview_height = 0.5,
+                    },
+                },
+                extensions = {
+                    file_browser = { },
+                },
+            },
+        },
+        keys = {
+            {
+                "<leader>o",
+                function()
+                    require("telescope.builtin").find_files({hidden=true})
+                end,
+                desc = "Find Plugin File",
+            },
+            { "<leader>co", "<CMD>Telescope find_files cwd=%:p:h<CR>", desc = "Find in [C]urrent folder"},
+            { "<leader>sf", "<CMD>Telescope current_buffer_fuzzy_find<CR>", desc = "Fuzzily [S]earch in current [F]ile" },
+            { "<leader>saf", "<CMD>Telescope live_grep<CR>", desc = "[S]earch in [A]ll [F]iles" },
+            { '<leader>gs', "<CMD>Telescope git_status<CR>", desc = '[G]it [S]tatus' },
+            { "<leader>fb", "<CMD>Telescope file_browser prompt_path=true<CR>", noremap = true, desc = "Open [F]ile [B]rowser" },
+            { "<leader>fc", "<CMD>Telescope file_browser path=%:p:h select_buffer=true<CR>", noremap = true , desc = "Open [F]ile browser in [C]urrent directory"},
+            { "<leader>sd", "<CMD>Telescope diagnostics<CR>", desc = "[S]earch [D]iagnostics"},
+        },
+    },
+    {
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
@@ -40,4 +92,44 @@ return {
 			end,
 		},
 	},
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            plugins = { spelling = true },
+            defaults = {
+                mode = { "n", "v" },
+                ["g"] = { name = "+goto" },
+                ["gz"] = { name = "+surround" },
+                ["]"] = { name = "+next" },
+                ["["] = { name = "+prev" },
+                ["<leader><tab>"] = { name = "+tabs" },
+                ["<leader>b"] = { name = "+buffer" },
+                ["<leader>c"] = { name = "+code" },
+                ["<leader>f"] = { name = "+file/find" },
+                ["<leader>g"] = { name = "+git" },
+                ["<leader>gh"] = { name = "+hunks" },
+                ["<leader>q"] = { name = "+quit/session" },
+                ["<leader>s"] = { name = "+search" },
+                ["<leader>u"] = { name = "+ui" },
+                ["<leader>w"] = { name = "+windows" },
+                ["<leader>x"] = { name = "+diagnostics/quickfix" },
+            },
+        },
+        config = function(_, opts)
+            local wk = require("which-key")
+            wk.setup(opts)
+            wk.register(opts.defaults)
+        end,
+    },    
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        cmd = { "TodoTelescope" },
+        event = { "BufReadPost", "BufNewFile" },
+        config = true,
+        keys = {
+            { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME,NOTE,WARNING<cr>", desc = "[F]ind [T]o do" },
+        },
+    }
 }

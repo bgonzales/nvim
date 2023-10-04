@@ -29,7 +29,7 @@ return {
                     end,
                     set_light_mode = function()
                         vim.api.nvim_set_option('background', 'light')
-                        vim.cmd([[colorscheme xcodelighthc]])
+                        vim.cmd([[colorscheme catppuccin]])
                     end,
                 }
                 require("auto-dark-mode").init()
@@ -38,7 +38,7 @@ return {
                 vim.cmd([[colorscheme catppuccin]])
             else
                 vim.api.nvim_set_option('background', 'light')
-                vim.cmd([[colorscheme gruvbox]])
+                vim.cmd([[colorscheme xcodelighthc]])
             end
         end
     }
