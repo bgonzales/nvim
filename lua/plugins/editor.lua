@@ -154,6 +154,9 @@ return {
 	{
 		"windwp/nvim-ts-autotag",
 		event = "InsertEnter",
-		opts = {},
+		opts = {
+			-- Temporal fix for wrong self closing tags: https://github.com/windwp/nvim-ts-autotag/issues/124
+			enable_close_on_slash = false
+		},
 	},
 }
