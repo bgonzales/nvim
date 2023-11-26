@@ -84,8 +84,8 @@ return {
 					vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
 				end
 
-				map("n", "]c", gs.next_hunk, "Jump to next git change")
-				map("n", "[c", gs.prev_hunk, "Jump to prev git change")
+				map("n", "<C-ç>", gs.next_hunk, "Jump to next git change")
+				map("n", "<C-Ç>", gs.prev_hunk, "Jump to prev git change")
 				map("n", "<leader>gg", gs.preview_hunk, "Preview hunk")
 				map("n", "<leader>gb", "<CMD>Gitsigns toggle_current_line_blame<CR>", "[G]it [B]lame")
 				map("n", "<leader>gd", gs.diffthis, "[G]it [D]iff")
