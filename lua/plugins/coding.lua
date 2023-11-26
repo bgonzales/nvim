@@ -116,10 +116,6 @@ return {
 				"folke/neodev.nvim", -- Additional lua configuration for nvim
 				config = function() require("neodev").setup() end
 			},
-			{
-				"j-hui/fidget.nvim", -- Status updates at the bottom right corner
-				config = function () require("fidget").setup() end
-			},
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 		},
