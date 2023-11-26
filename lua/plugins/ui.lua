@@ -17,22 +17,23 @@ return {
 			vim.notify = require("notify")
 		end,
 	},
-	{
-		"stevearc/dressing.nvim",
-		lazy = true,
-		init = function()
-			---@diagnostic disable-next-line: duplicate-set-field
-			vim.ui.select = function(...)
-				require("lazy").load({ plugins = { "dressing.nvim" } })
-				return vim.ui.select(...)
-			end
-			---@diagnostic disable-next-line: duplicate-set-field
-			vim.ui.input = function(...)
-				require("lazy").load({ plugins = { "dressing.nvim" } })
-				return vim.ui.input(...)
-			end
-		end,
-	},
+	-- FIXME: Fix conflict when launching code actions and creating a file using file browser, direction of input goes on top of screen
+	-- {
+	-- 	"stevearc/dressing.nvim",
+	-- 	lazy = true,
+	-- 	init = function()
+	-- 		---@diagnostic disable-next-line: duplicate-set-field
+	-- 		vim.ui.select = function(...)
+	-- 			require("lazy").load({ plugins = { "dressing.nvim" } })
+	-- 			return vim.ui.select(...)
+	-- 		end
+	-- 		---@diagnostic disable-next-line: duplicate-set-field
+	-- 		vim.ui.input = function(...)
+	-- 			require("lazy").load({ plugins = { "dressing.nvim" } })
+	-- 			return vim.ui.input(...)
+	-- 		end
+	-- 	end,
+	-- },
 
 	-- Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.
 	{
