@@ -18,7 +18,8 @@ return {
 			},
 			-- Colorscheme options: tokyonight-{night,storm,day,moon}
 			"folke/tokyonight.nvim",
-			"ellisonleao/gruvbox.nvim"
+			"ellisonleao/gruvbox.nvim",
+			"talha-akram/noctis.nvim"
 		},
 		config = function()
 			if vim.loop.os_uname().sysname == "Darwin" then
@@ -30,7 +31,8 @@ return {
 					end,
 					set_light_mode = function()
 						vim.api.nvim_set_option_value('background', 'light', {})
-						vim.cmd([[colorscheme xcodelight]])
+						-- vim.cmd([[colorscheme xcodelight]])
+						vim.cmd([[colorscheme noctis_hibernus]])
 					end,
 				}
 				require("auto-dark-mode").init()
