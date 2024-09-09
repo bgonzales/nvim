@@ -1,5 +1,5 @@
 return {
-    {
+	{
 		"L3MON4D3/LuaSnip",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
@@ -11,40 +11,42 @@ return {
 			-- Custom lua snippets in `luasnippets` folder (by default)
 			require("luasnip.loaders.from_lua").lazy_load()
 		end,
-        opts = {
-            history = true,
-            delete_check_events = "TextChanged",
-        },
-        keys = {
-            {
-              "<tab>",
-              function()
-                return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-              end,
-              expr = true, silent = true, mode = "i",
-            },
-            { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-            { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-        },
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
+		keys = {
+			{
+				"<tab>",
+				function()
+					return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+				end,
+				expr = true,
+				silent = true,
+				mode = "i",
+			},
+			{ "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
+			{ "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+		},
 	},
 	{
 		'hrsh7th/nvim-cmp',
-        version = false,
-        event = "InsertEnter",
+		version = false,
+		event = "InsertEnter",
 		dependencies = {
 			'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-nvim-lua',
+			'hrsh7th/cmp-buffer',
+			'hrsh7th/cmp-path',
+			'hrsh7th/cmp-nvim-lua',
 			'saadparwaiz1/cmp_luasnip',
 		},
 		opts = function()
 			local cmp = require 'cmp'
 			local luasnip = require 'luasnip'
 			return {
-                completion = {
-                    completeopt = "menu,menuone,noinsert",
-                },
+				completion = {
+					completeopt = "menu,menuone,noinsert",
+				},
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
@@ -64,7 +66,7 @@ return {
 						else
 							fallback()
 						end
-						end, { 'i', 's' }
+					end, { 'i', 's' }
 					),
 					['<S-Tab>'] = cmp.mapping(function(fallback)
 						if luasnip.jumpable(-1) then
@@ -72,16 +74,16 @@ return {
 						else
 							fallback()
 						end
-						end, { 'i', 's' }
+					end, { 'i', 's' }
 					),
 				},
-				sources = cmp.config.sources (
+				sources = cmp.config.sources(
 					{
 						{ name = 'nvim_lsp' },
 						{ name = 'luasnip' },
-                        { name = "nvim_lua" },
+						{ name = "nvim_lua" },
 						{ name = 'buffer' },
-                        { name = 'path' },
+						{ name = 'path' },
 					}
 				),
 				formatting = {
@@ -105,7 +107,7 @@ return {
 			}
 		end
 	},
-    {
+	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
@@ -113,9 +115,9 @@ return {
 				'williamboman/mason.nvim',
 				config = function() require("mason").setup() end
 			}, {
-				"folke/neodev.nvim", -- Additional lua configuration for nvim
-				config = function() require("neodev").setup() end
-			},
+			"folke/neodev.nvim", -- Additional lua configuration for nvim
+			config = function() require("neodev").setup() end
+		},
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 		},
@@ -133,7 +135,7 @@ return {
 
 			servers = {
 				tailwindcss = {},
-				tsserver = {},
+				ts_ls = {},
 				eslint = {},
 				jsonls = {},
 				texlab = {},
@@ -146,22 +148,29 @@ return {
 					Lua = {
 						workspace = { checkThirdParty = false },
 						telemetry = { enable = false },
-						diagnostics = { globals = {'vim'}, }
+						diagnostics = { globals = { 'vim' }, }
 					},
 				},
 			},
 		},
 
 		config = function(_, opts)
-			local on_attach = function (client, _)
-				vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0, desc='Hover Documentation'})
-				vim.keymap.set('n', 'rn', vim.lsp.buf.rename, {buffer=0, desc='[R]ename'})
-				vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0, desc='[G]o to [D]efinition'})
-				vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format, {buffer=0, desc='[F]ormat [F]ile]'})
-				vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {buffer=0, desc='[G]o to [R]eferences'})
-				vim.keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, {buffer=0, desc='[C]ode [A]ction'})
-				vim.keymap.set('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, {buffer=0, desc='[W]orkspace [S]ymbols'})
-				vim.keymap.set('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, {buffer=0, desc='[D]ocument [S]ymbols'})
+			local on_attach = function(client, _)
+				vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0, desc = 'Hover Documentation' })
+				vim.keymap.set('n', 'rn', vim.lsp.buf.rename, { buffer = 0, desc = '[R]ename' })
+				vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0, desc = '[G]o to [D]efinition' })
+				vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format, { buffer = 0, desc = '[F]ormat [F]ile]' })
+				vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references,
+					{ buffer = 0, desc = '[G]o to [R]eferences' })
+				vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {
+					buffer = 0,
+					desc =
+					'[C]ode [A]ction'
+				})
+				vim.keymap.set('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
+					{ buffer = 0, desc = '[W]orkspace [S]ymbols' })
+				vim.keymap.set('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols,
+					{ buffer = 0, desc = '[D]ocument [S]ymbols' })
 			end
 
 			vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
