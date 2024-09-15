@@ -6,7 +6,7 @@ vim.g.maplocalleader = ' '
 
 -- Enable line numbers and relative position
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 -- Highlight current line
 vim.opt.cursorline = true
@@ -41,7 +41,7 @@ vim.g.loaded_netrw = 0
 vim.g.loaded_netrwPlugin = 0
 
 -- Always show sign column
--- vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes'
 
 -- Case of normal letters is ignored
 vim.opt.ignorecase = true
