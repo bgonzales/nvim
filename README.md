@@ -9,11 +9,14 @@
 In `~/.zshrc` file write a method so we can press Ctrl-n to open the config switcher and some alias pointing directly are created.
 
 ```
-alias nvim-editor="NVIM_APPNAME=nvim/editor nvim"
-alias nvim-lazy="NVIM_APPNAME=nvim/lazy nvim"
+# NeoVim configuration
+#
+alias nvim-minimal="NVIM_APPNAME=nvim/distros/minimal nvim"
+alias nvim-lazy="NVIM_APPNAME=nvim/distros/lazy nvim"
+alias nvim-chad="NVIM_APPNAME=nvim/distros/chad nvim"
 
 function nvim-config() {
-    items=("editor" "lazy")
+    items=("minimal" "lazy" "chad")
     config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
     
     if [[ -z $config ]]; then
@@ -21,7 +24,7 @@ function nvim-config() {
         return 0
     fi
 
-    NVIM_APPNAME=nvim/$config nvim $@
+    NVIM_APPNAME=nvim/distros/$config nvim $@
 }
 
 bindkey -s ^n "nvim-config\n"
