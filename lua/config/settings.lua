@@ -1,8 +1,8 @@
 -- [[ Vim Settings ]]
 
 -- Setup leader keys. <LocalLeader> is to be used for mappings which are local to a buffer.
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Enable line numbers and relative position
 vim.opt.number = true
