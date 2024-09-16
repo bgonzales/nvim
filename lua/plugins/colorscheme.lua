@@ -31,8 +31,13 @@ return {
 					end,
 					set_light_mode = function()
 						vim.api.nvim_set_option_value('background', 'light', {})
+						-- Xcode color scheme
 						-- vim.cmd([[colorscheme xcodelight]])
+
+						-- Noctis configuration
 						vim.cmd([[colorscheme noctis_hibernus]])
+						-- vim.cmd([[colorscheme noctis_lilac]])
+						vim.cmd([[highlight LineNr guibg=NONE gui=NONE cterm=NONE]])
 					end,
 				}
 				require("auto-dark-mode").init()
