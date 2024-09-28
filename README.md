@@ -5,6 +5,10 @@
 - Requirements for Telescope and language servers: `brew install fzf ripgrep fd node`
 - Requirements for Xcode plugin: `brew install xcode-build-server xcbeautify` and `gem install xcodeproj --user-install`
 
+`xcode-build-server` is optional
+
+## Config switcher
+
 In `~/.zshrc` file write a method so we can press Ctrl-n to open the config switcher and some alias pointing directly are created.
 
 ```

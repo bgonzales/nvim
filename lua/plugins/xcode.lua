@@ -10,13 +10,26 @@ return {
 		},
 		config = function()
 			require("xcodebuild").setup({
-				-- put some options here or leave it empty to use default settings
+				commands = {
+					extra_build_args = "-parallelizeTargets -skipMacroValidation"
+				},
+				logs = {
+					auto_open_on_success_build = true,
+					auto_open_on_failed_build = true,
+					auto_close_on_app_launch = false,
+					auto_close_on_success_build = false,
+				},
+				quickfix = {
+					show_errors_on_quickfixlist = true,
+					show_warnings_on_quickfixlist = true,
+				}
 			})
 		end,
 		keys = {
 			{ "<leader>xc", "<CMD>XcodebuildPicker<CR>", desc = "Show Xcodebuild Actions"},
 			{ "<leader>xb", "<CMD>XcodebuildBuild<CR>", desc = "Build project"},
 			{ "<leader>xr", "<CMD>XcodebuildBuildRun<CR>", desc = "Build and run project"},
+			{ "<leader>xl", "<CMD>XcodebuildToggleLogs<CR>", desc = "Toggle logs"},
 		}
 	}
 }
